@@ -1,5 +1,8 @@
 import threading
 import urllib.request
+#import threading
+import requests
+#from urllib.parse import urlparse
 
 urls = [
     "https://example.com",
@@ -9,7 +12,14 @@ urls = [
 
 def fetch_url_content(url):
     # TODO: Download content and return first 100 characters as string
-    request.
+    #parsed_url = urlparse(url)
+    #filename = parsed_url.path.split('/')[-1]
+    req = urllib.request.Request(url)
+    with urllib.request.urlopen(req) as response:
+        raw = response.read(1024)
+
+    text = raw.decode("utf-8", errors="replace")
+    return text[:100]
 
 def main():
     threads = []
